@@ -1,0 +1,49 @@
+<!-- Main content-->
+
+            
+            <div class="login-container">
+               
+                <form class="login-form" [formGroup]="loginForm" (ngSubmit)="loginUser()">
+                    <h2 class="form-title">Sistema Administrativo Bus Tecsup</h2>
+                    <div class="form-group">
+                       
+                        <input type="text" formControlName="username" placeholder="example@tecsup.edu.pe" title="Please enter you username" >
+                        <div *ngIf="loginForm.get('username')?.hasError('required') 
+                                && loginForm.get('username')?.touched; else validUser">
+                            <div class="text-danger">
+                                <span>El usuario <strong>es obligatorio</strong></span>
+                            </div>
+                        </div>
+                        <ng-template #validUser>
+                            <div>
+                                <span class="help-block small">Ingrese su correo</span>
+                            </div>
+                        </ng-template>
+                    </div>
+                    <div class="form-group">
+                        
+                        <input type="password" formControlName="password" title="Please enter your password" placeholder="******" >
+                        <div *ngIf="loginForm.get('password')?.hasError('required') 
+                                && loginForm.get('password')?.touched; else validPassword">
+                            <div class="text-danger">
+                                <span>El password <strong>es obligatorio</strong></span>
+                            </div>
+                        </div>
+                        <ng-template #validPassword>
+                            <div>
+                                <span class="help-block small">Ingrese su password</span>
+                            </div>
+                        </ng-template>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" [disabled]="loginForm.invalid"  value="Iniciar sesión">
+                        <br><br><p>¿No tienes una cuenta?
+                        <a  routerLink="/crear-usuario">Crear Cuenta</a></p>
+                    </div>
+                </form>
+            </div>
+      
+<!-- End main content-->
+
+
+
